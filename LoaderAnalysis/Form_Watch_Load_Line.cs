@@ -49,6 +49,7 @@ namespace LoaderAnalysis
 
         private void onFormLoad(object sender, EventArgs e)
         {
+            this.zedGraphControl_draw.ContextMenuBuilder += ZedGraphContextMenuBuilder;
             this.zedGraphControl_draw.GraphPane.Title.Text = "载荷图谱";
             this.zedGraphControl_draw.GraphPane.XAxis.Title.Text = "时间";
             this.zedGraphControl_draw.GraphPane.YAxis.Title.Text = "数值";
@@ -60,6 +61,58 @@ namespace LoaderAnalysis
             this.zedGraphControl_draw.GraphPane.XAxis.MajorGrid.IsVisible = true;
             //
             initDataGridView();
+        }
+
+        public void ZedGraphContextMenuBuilder(ZedGraphControl control, ContextMenuStrip menuStrip, Point mousePt, ZedGraphControl.ContextMenuObjectState objState)
+        {
+            foreach (ToolStripMenuItem item in menuStrip.Items)
+            {
+                switch (item.Name)
+                {
+                    case "copied_to_clip":
+                        item.Text = @"复制到剪贴板";
+                        break;
+                    case "copy":
+                        item.Text = @"复制";
+                        break;
+                    case "page_setup":
+                        item.Text = @"页面设置...";
+                        break;
+                    case "print":
+                        item.Text = @"打印...";
+                        break;
+                    case "save_as":
+                        item.Text = @"另存图表...";
+                        break;
+                    case "set_default":
+                        item.Text = @"恢复默认大小";
+                        break;
+                    case "show_val":
+                        item.Text = @"显示节点数值";
+                        break;
+                    case "title_def":
+                        item.Text = @"标题";
+                        break;
+                    case "undo_all":
+                        item.Text = @"还原缩放/移动";
+                        break;
+
+                    case "unpan":
+                        item.Text = @"还原移动";
+                        break;
+
+                    case "unzoom":
+                        item.Text = @"还原缩放";
+                        break;
+
+                    case "x_title_def":
+                        item.Text = @"X 轴";
+                        break;
+                    case "y_title_def":
+                        item.Text = @"Y 轴";
+                        break;
+                }
+            }
         }
 
         private void onTimerTick(object sender, EventArgs e)
