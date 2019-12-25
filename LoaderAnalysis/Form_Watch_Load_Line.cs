@@ -47,9 +47,15 @@ namespace LoaderAnalysis
             dataGridView_all.Columns[5].HeaderText = "创建者";
         }
 
+        public bool OnZedGraphControl_2_DoubleClickEvent(ZedGraphControl sender, MouseEventArgs e)
+        {
+            return true;
+        }
+
         private void onFormLoad(object sender, EventArgs e)
         {
             this.zedGraphControl_draw.ContextMenuBuilder += ZedGraphContextMenuBuilder;
+            zedGraphControl_draw.DoubleClickEvent += OnZedGraphControl_2_DoubleClickEvent;
             this.zedGraphControl_draw.GraphPane.Title.Text = "载荷图谱";
             this.zedGraphControl_draw.GraphPane.XAxis.Title.Text = "时间";
             this.zedGraphControl_draw.GraphPane.YAxis.Title.Text = "数值";
